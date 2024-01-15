@@ -1,4 +1,4 @@
-package lesson.ch01_intro;
+package ch01_intro;
 
 // class 이름은 대문자로 시작.
 public class Ex01_HelloWorld {
