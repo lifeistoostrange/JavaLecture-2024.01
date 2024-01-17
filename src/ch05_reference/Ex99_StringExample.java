@@ -1,6 +1,21 @@
 package ch05_reference;
 
 public class Ex99_StringExample {
+	
+	static boolean isPalindrome(String s) {
+		int left = 0;
+	    int right = s.length() - 1;
+
+	    while (left < right) {
+	        if (s.charAt(left) != s.charAt(right)) {
+	            return false;
+	        }
+	        left++;
+	        right--;
+	    }
+
+	    return true;
+    }
 
 	public static void main(String[] args) {
 		
@@ -36,20 +51,23 @@ public class Ex99_StringExample {
 
 		
 		// Q3
+		
 		int maxPal = 0, max1 = 0, max2 = 0;
-		for (int i = 100; i <= 999; i++) {
-			for (int j = i; j <= 999; j++) {
-				int mul = i * j;
-                String s = String.valueOf(mul);
 
-                if (s.equals(new StringBuilder(s).reverse().toString()) && mul > maxPal) {
-                    maxPal = mul;
-                    max1 = i;
-                    max2 = j;
+        for (int i = 100; i <= 999; i++) {
+            for (int k = i; k <= 999; k++) {
+                int mul = i * k;
+                if (isPalindrome(String.valueOf(mul))) {
+                    if (mul > maxPal) {
+                        maxPal = mul;
+                        max1 = i;
+                        max2 = k;
+                    }
                 }
-			}
-		}
-		System.out.println(max1 + " * " + max2 + " = " + maxPal);
+            }
+        }
+
+        System.out.println(max1 + " x " + max2 + " = " + maxPal); // 913 x 993 = 906609
 		
 		
 		// Q4
