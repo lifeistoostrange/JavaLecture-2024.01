@@ -3,18 +3,33 @@ package ch10_oop.sec03_polymorphism;
 public class Main {
 
 	public static void main(String[] args) {
-		Parent parent = new Parent();
-		parent.parentField = 1000;
-		parent.parentMethod();
-
-		Child child = new Child();
-		child.parentField = 300;
-		child.parentField = 600;
-		child.childMethod();
-		child.parentMethod();
+		Cat cat = new Cat(); cat.sound(); cat.jump();
+		Dog dog = new Dog(); dog.sound(); dog.walk();
 		
-		Parent p = new Child();				// 폴리모피즘
-		Child c = (Child) new Parent();		// 강제형변환
+		// 다형성, 자식은 부모 타입으로 자동 타입 변환이 이루어짐
+		Animal animal = new Cat();
+		animal.sound();					// meaw
+//		animal.jump();					// Animal class에 없는 메소드는 사용 불가
+		animal = dog;
+		animal.sound(); 				// wuf
+//		animal.walk();					// Animal class에 없는 메소드는 사용 불가
+		
+		
+		animal = cat;
+		cat = (Cat) animal;				// 강제 형변환
+		cat.jump();
+		
+//		dog = (Dog) animal; dog.walk();	//강제 형변환은 주의 깊게 사용해야함
+		animal = new Animal();
+		if (animal instanceof Cat) {
+			cat = (Cat) animal;
+			cat.sound(); cat.jump();
+		} else if (animal instanceof Dog) {
+			dog = (Dog) animal;
+			dog.sound(); dog.walk();
+		} else {
+			System.out.println("cat.sound()/dog.sound() 등을 사용할 수 없음.");
+		}
 	}
 
 }
