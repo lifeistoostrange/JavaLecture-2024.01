@@ -1,4 +1,4 @@
-package ch10_oop.sec03_polymorphism;
+package ch10_oop.sec04_polymorphism;
 
 public class Main {
 
