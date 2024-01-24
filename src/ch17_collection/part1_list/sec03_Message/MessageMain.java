@@ -1,42 +1,37 @@
-package Ex01_message;
+package ch17_collection.part1_list.sec03_Message;
 
 import java.util.Scanner;
 
-
 public class MessageMain {
-	
+	private static MessageService messageService = new MessageServiceListImpl();
 	private static Scanner scan = new Scanner(System.in);
-	private static MessageService messageService = new MessageServiceArrayImpl();
-	
 
 	public static void main(String[] args) {
 		String writer = null, content = null;
 		Message message = null;
 		int mid = 0;
 		boolean run = true;
+		
 		while (run) {
-			System.out.println("+===================================================================================+");
-			System.out.println("| 1.전체 메세지 목록 | 2.작성자로 검색 | 3.메시지 작성 | 4. 메시지 입력 | 5.메시지 수정 | 6. 종료 |");
-			System.out.println("+===================================================================================+");
+			System.out.println("+=============+=================+==========+==========+==========+========+");
+			System.out.println("| 1. 전체목록 | 2.Writer별 목록 | 3.글쓰기 | 4.글수정 | 5.글삭제 | 6.종료 |");
+			System.out.println("+=============+=================+==========+==========+==========+========+");
 			System.out.print("선택> ");
 			
 			int selectNo = Integer.parseInt(scan.nextLine());
 			switch(selectNo) {
 			case 1:
-//				messageService.findByMid(selectNo);
-				messageService.messageList();
+				messageService.getMessageListAll(); 
 				break;
-			
-			case 2 :
+			case 2:
 				System.out.println("---------------");
 				System.out.println(" Writer별 목록");
 				System.out.println("---------------");
 				System.out.print("Writer 이름> ");
 				writer = scan.nextLine();
-				messageService.messageListByWriter(writer); 
+				messageService.getMessageListByWriter(writer); 
 				break;
-				
-			case 3 : 
+			case 3:
 				System.out.println("---------------");
 				System.out.println("  메세지 쓰기");
 				System.out.println("---------------");
@@ -47,14 +42,13 @@ public class MessageMain {
 				message = new Message(content, writer);
 				messageService.insertMessage(message);
 				break;
-				
-			case 4 :
+			case 4:
 				System.out.println("---------------");
 				System.out.println("  메세지 수정");
 				System.out.println("---------------");
 				System.out.print("메세지 ID> ");
 				mid = Integer.parseInt(scan.nextLine());
-				message = messageService.findByMid(mid);                 
+				message = messageService.findByMid(mid);
 				System.out.print("Writer 이름(" + message.getWriter() + ")> ");
 				writer = scan.nextLine();
 				System.out.print("메세지 내용(" + message.getContent() + ")> ");
@@ -63,8 +57,7 @@ public class MessageMain {
 				message.setContent(content);
 				messageService.updateMessage(message);
 				break;
-				
-			case 5 : 
+			case 5:
 				System.out.println("---------------");
 				System.out.println("  메세지 삭제");
 				System.out.println("---------------");
@@ -72,16 +65,14 @@ public class MessageMain {
 				mid = Integer.parseInt(scan.nextLine());
 				messageService.deleteMessage(mid);
 				break;
-				
-			case 6 :
-				run = false;
+			case 6:
+				run = false; 
 				break;
-				
-			default :
-				System.out.println("숫자제대로입력좀하세요");
+			default:
+				System.out.println("Warning: 1 ~ 6 사이의 숫자만 입력하세요.");
 			}
 		}
-		System.out.println("끝");
+		System.out.println("프로그램 종료");
 	}
 
 }
