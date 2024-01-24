@@ -11,9 +11,9 @@ public class Ex01_Checked {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
-			Class cls = Class.forName("java,lang.object");
+			Class cls = Class.forName("java.lang.Object");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -25,7 +25,7 @@ public class Ex01_Checked {
 			e.printStackTrace();
 		}
 		
-		System.out.println("End of program.");
+		System.out.println("프로그램의 마지막입니다.");
 	}
 
 }
