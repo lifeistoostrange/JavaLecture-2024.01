@@ -6,18 +6,23 @@ import java.util.List;
 
 public class MessageServiceListImpl implements MessageService {
 	List<Message> list = new ArrayList<>();
+	int index = 101;
 	
 	public MessageServiceListImpl() {
-		list.add(new Message(101, "안녕하세요", "김용현", LocalDateTime.now(), 0));
-		list.add(new Message(102, "I sing", "마이클잭슨", LocalDateTime.now(), 0));
-		list.add(new Message(103, "I play basketball", "마이클조던", LocalDateTime.now(), 0));
-		list.add(new Message(104, "난 돈이 많아요", "도날드트럼프", LocalDateTime.now(), 0));
-		list.add(new Message(105, "나도 돈이 많아요", "일론머스크", LocalDateTime.now(), 0));
+		list.add(new Message(index++, "안녕하세요", "김용현", LocalDateTime.now(), 0));
+		list.add(new Message(index++, "I sing", "마이클잭슨", LocalDateTime.now(), 0));
+		list.add(new Message(index++, "I play basketball", "마이클조던", LocalDateTime.now(), 0));
+		list.add(new Message(index++, "난 돈이 많아요", "도날드트럼프", LocalDateTime.now(), 0));
+		list.add(new Message(index++, "나도 돈이 많아요", "일론머스크", LocalDateTime.now(), 0));
 	}
 
 	@Override
 	public Message findByMid(int mid) {
-		// TODO Auto-generated method stub
+		for (Message msg : list) {
+			if (msg.getMid() == mid) {
+				return msg;
+			}
+		}
 		return null;
 	}
 
@@ -25,13 +30,10 @@ public class MessageServiceListImpl implements MessageService {
 	public List<Message> getMessageListAll() {
 		List<Message> fullList = new ArrayList<>();
 		for (Message msg : list) {
-			if (msg == null) {
-				break;
+			if (msg.getIsDeleted() != MessageService.DELETED) {
+				fullList.add(msg);
 			}
-			if (msg.getIsDeleted() != )
-			
 		}
-		
 		return fullList;
 	}
 
@@ -43,20 +45,34 @@ public class MessageServiceListImpl implements MessageService {
 
 	@Override
 	public void insertMessage(Message message) {
-		// TODO Auto-generated method stub
-		
+		message.setMid(index++);
+		message.setModTime(LocalDateTime.now());
+		list.add(message);
 	}
 
 	@Override
 	public void updateMessage(Message message) {
-		// TODO Auto-generated method stub
-		
+		int index = 0;
+		for (Message msg : list) {
+			if (msg.getMid() == message.getMid()) {
+				index = list.indexOf(msg);
+				break;
+			}
+		}
+		message.setModTime(LocalDateTime.now());
+		list.set(index, message);
 	}
 
 	@Override
 	public void deleteMessage(int mid) {
-		// TODO Auto-generated method stub
-		
+		Message message = null;
+		for (Message msg : list) {
+			if (msg.getMid() == mid) {
+				message = msg;
+				break;
+			}
+		}
+		list.remove(message);
 	}
 
 }

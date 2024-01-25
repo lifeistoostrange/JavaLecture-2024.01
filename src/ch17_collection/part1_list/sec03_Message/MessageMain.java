@@ -1,10 +1,13 @@
 package ch17_collection.part1_list.sec03_Message;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MessageMain {
 	private static MessageService messageService = new MessageServiceListImpl();
 	private static Scanner scan = new Scanner(System.in);
+	static List<Message> list = new ArrayList<>();
 
 	public static void main(String[] args) {
 		String writer = null, content = null;
@@ -21,7 +24,9 @@ public class MessageMain {
 			int selectNo = Integer.parseInt(scan.nextLine());
 			switch(selectNo) {
 			case 1:
-				messageService.getMessageListAll(); 
+				list = messageService.getMessageListAll(); 
+				list.forEach(x -> System.out.println(x));
+				System.out.println();
 				break;
 			case 2:
 				System.out.println("---------------");
@@ -30,6 +35,7 @@ public class MessageMain {
 				System.out.print("Writer 이름> ");
 				writer = scan.nextLine();
 				messageService.getMessageListByWriter(writer); 
+				System.out.println();
 				break;
 			case 3:
 				System.out.println("---------------");
@@ -73,6 +79,7 @@ public class MessageMain {
 			}
 		}
 		System.out.println("프로그램 종료");
+		scan.close();
 	}
 
 }
