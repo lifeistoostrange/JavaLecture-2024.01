@@ -12,18 +12,12 @@ public class CountNumbersOfWords {
 
 		int count = 0;
 
-//		for (int i = 0; i <= dividedSyntax.length; i++) {
-//			for (int j = i; j <= dividedSyntax.length - i; j++) {
-//				if (dividedSyntax[i] == dividedSyntax[j]) {
-//					
-//				}
-//			}
-//		}
 
-		System.out.println("단어의 개수: " + dividedSyntax.length);
+		
 		for (int i = 0; i < dividedSyntax.length; i++) {
 			System.out.println(dividedSyntax[i] + "\n");
 		}
+		System.out.println("단어의 개수: " + dividedSyntax.length);
 	}
 
 }
