@@ -59,7 +59,6 @@ public class Member {
 	public static ArrayList<Member> getMemberList() {
 		ArrayList<Member> list = new ArrayList<>();
 
-		// Member 객체 생성 후 리스트에 추가
 		Member james = new Member(1, "James", 1985, "010-9289-0372");
 		Member maria = new Member(2, "Maria", 1990, "010-9496-0372");
 

@@ -8,7 +8,7 @@ public class Ex01 {
 		// 1) 1에서 100까지의 배수의 합
 		int threeSquaresum = 0;
 		for (int i = 3; i < 100; i += 3) {
-			threeSquaresum += i * i;
+			threeSquaresum += i;
 		}
 		System.out.println("1에서 100까지 3의 배수의 합 : " + threeSquaresum);
 
