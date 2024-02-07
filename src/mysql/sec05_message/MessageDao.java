@@ -100,6 +100,7 @@ public class MessageDao {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, msg.getContent());
             pstmt.setString(2, msg.getWriter());
+            pstmt.setInt(3, msg.getMid());
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -109,11 +110,12 @@ public class MessageDao {
     }
 
     public void updateMessage(Message msg) {
-        String sql = "UPDATE message SET content=? WHERE mid=?";
+        String sql = "UPDATE message SET content=?, writer=? WHERE mid=?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, msg.getContent());
-            pstmt.setInt(2, msg.getMid());
+            pstmt.setString(2, msg.getWriter());
+            pstmt.setInt(3, msg.getMid());
 
             pstmt.executeUpdate();
             pstmt.close();
